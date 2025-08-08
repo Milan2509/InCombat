@@ -1,0 +1,24 @@
+{
+  "effect.incombat.in_combat": "In Combat",
+
+  "text.config.incombat.title": "In Combat Config",
+  "text.config.incombat.section.general": "General",
+  "text.config.incombat.option.disableNaturalRegen": "Disable natural regeneration while in combat",
+  "text.config.incombat.option.alwaysActive": "Always 'in combat'",
+
+  "text.config.incombat.category.damageSources": "Damage Sources that should activate 'in combat'",
+  "text.config.incombat.option.damageSources.always": "Always (When the player takes any form of damage)",
+  "text.config.incombat.option.damageSources.player": "Player",
+  "text.config.incombat.option.damageSources.entity": "Any Entity",
+  "text.config.incombat.option.damageSources.fire": "Fire",
+  "text.config.incombat.option.damageSources.fallDamage": "Fall Damage",
+  "text.config.incombat.option.damageSources.dragonBreath": "Dragon Breath",
+
+  "text.config.incombat.option.checkForEffects": "Should Effects make player 'in combat'",
+  "text.config.incombat.option.applyEffects": "Which effects should activate 'in combat' (See file for more info)",
+
+  "text.config.incombat.section.hudRenderer": "HUD Renderer",
+  "text.config.incombat.option.renderHud": "Render HUD",
+  "text.config.incombat.option.xOffset": "X Offset",
+  "text.config.incombat.option.yOffset": "Y Offset"
+}
