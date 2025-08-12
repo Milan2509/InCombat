@@ -54,6 +54,10 @@ public class InCombatConfigModel {
     @Comment("Y offset coordinates")
     public int yOffset = 0;
 
+    @SectionHeader("modIntegrations")
+    @Comment("can't teleport while in combat")
+    public boolean waystones = true;
+
     @ExcludeFromScreen
     @Comment("DO NOT TOUCH PLS")
     public boolean firstLoad = true;

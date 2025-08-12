@@ -2,8 +2,10 @@ package eagleseye.incombat;
 
 import eagleseye.incombat.config.InCombatConfig;
 import eagleseye.incombat.effect.InCombatEffect;
+import eagleseye.incombat.integrations.WaystonesIntegrations;
 import eagleseye.incombat.logic.InCombatHud;
 import eagleseye.incombat.logic.PlayerDisconnectLogic;
+import eagleseye.incombat.util.DependencyUtils;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.entity.effect.StatusEffect;
@@ -33,6 +35,9 @@ public class InCombat implements ModInitializer {
 		//Register Logic
 		InCombatHud.init();
 		PlayerDisconnectLogic.init();
+
+		//Mod Integrations
+		if (DependencyUtils.isWaystonesLoaded()) WaystonesIntegrations.stopWaystoneInteraction();
 
 		//Only on first load
 		if(COMBAT_CONFIG.firstLoad()){

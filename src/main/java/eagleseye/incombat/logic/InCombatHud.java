@@ -1,6 +1,5 @@
 package eagleseye.incombat.logic;
 
-import eagleseye.incombat.InCombat;
 import eagleseye.incombat.api.CombatCheck;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
@@ -28,10 +27,9 @@ public class InCombatHud {
 
             if(COMBAT_CONFIG.renderHud() && CombatCheck.isPlayerInCombat(player)){
                 int x = (screenWidth - textureWidth) / 2;
-                int y = ((screenHeight - textureHeight) / 2) + (screenHeight / 3);
+                float y = (float) ((screenHeight - textureHeight) / 2) + ((float) screenHeight / 2.8f);
 
-
-                context.drawTexture(texture, x + COMBAT_CONFIG.xOffset(), y + COMBAT_CONFIG.yOffset(),
+                context.drawTexture(texture, x + COMBAT_CONFIG.xOffset(), (int) y + COMBAT_CONFIG.yOffset(),
                         0, 0, 16, 16, textureWidth, textureHeight);
             }
         });

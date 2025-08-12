@@ -1,5 +1,7 @@
 package eagleseye.incombat.mixin;
 
+import eagleseye.incombat.integrations.WaystonesIntegrations;
+import eagleseye.incombat.util.DependencyUtils;
 import eagleseye.incombat.util.EffectUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -15,10 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static eagleseye.incombat.InCombat.COMBAT_CONFIG;
 import static eagleseye.incombat.util.EffectUtils.applyCombatEffect;
 
-
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
-    @Inject(method = "damage", at = @At("HEAD"))
+    @Inject(method = "damage", at = @At("TAIL"))
     private void applyEffectOnDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir){
         LivingEntity self = (LivingEntity)(Object)this;
         Entity attacker = source.getAttacker();
@@ -43,25 +44,30 @@ public class LivingEntityMixin {
         //Dragon Breath
         if(COMBAT_CONFIG.damageSources.dragonBreath() && source.isOf(DamageTypes.DRAGON_BREATH)) canApply = true;
 
+        //Effects
+        if(COMBAT_CONFIG.checkForEffects()) {
+            for (String effect : COMBAT_CONFIG.applyEffects()){
+                if(EffectUtils.hasEffectWithKeyword(player, effect)){
+                    canApply = true;
+                }
+            }
+        }
+
         //Apply Effect, if possible
         if(canApply) applyCombatEffect(player);
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void playerHasEffectOrAlwaysInCombat(CallbackInfo ci){
-        //Always active
         if ((LivingEntity)(Object)this instanceof PlayerEntity player){
+            //Always active
             if(COMBAT_CONFIG.alwaysActive()) applyCombatEffect(player);
 
-            //Effects
-            if(COMBAT_CONFIG.checkForEffects()) {
-                for (String effect : COMBAT_CONFIG.applyEffects()){
-                    if(EffectUtils.hasEffectWithKeyword(player, effect)){
-                        applyCombatEffect(player);
-                    }
-                }
+            //Waystones integration
+            if(DependencyUtils.isWaystonesLoaded()) {
+                WaystonesIntegrations.stopTeleportItems(player);
             }
-        }
 
+        }
     }
 }

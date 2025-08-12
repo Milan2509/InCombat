@@ -1,5 +1,6 @@
 {
   "effect.incombat.in_combat": "In Combat",
+  "message.incombat.cancel_event": "Can't use while In Combat",
 
   "text.config.incombat.title": "In Combat Config",
   "text.config.incombat.section.general": "General",
