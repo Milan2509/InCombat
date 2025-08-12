@@ -53,6 +53,15 @@ public class LivingEntityMixin {
             }
         }
 
+        //Apply to attack (when enabled)
+//        if(InCombat.COMBAT_CONFIG.onAttack()){
+//            if(attacker.isPlayer()){
+//                LivingEntity attacker1 = (LivingEntity) attacker;
+//                PlayerEntity playerAttacker = attacker1.getCommandSource().getPlayer();
+//                applyCombatEffect(playerAttacker);
+//            }
+//        }
+
         //Apply Effect, if possible
         if(canApply) applyCombatEffect(player);
     }

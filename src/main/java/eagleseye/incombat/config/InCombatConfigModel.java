@@ -38,8 +38,8 @@ public class InCombatConfigModel {
         public boolean dragonBreath = true;
     }
 
-    @Comment("If the player should be in combat when they attacked an entity")
-    public boolean onAttack = true;
+//    @Comment("If the player should be in combat when they attacked an entity")
+//    public boolean onAttack = true;
 
     @Comment("If the mod should check for any effects that will cause the player to be in combat (see list below)")
     public boolean checkForEffects = true;

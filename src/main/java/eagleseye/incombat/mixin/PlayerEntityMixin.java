@@ -2,7 +2,6 @@ package eagleseye.incombat.mixin;
 
 import eagleseye.incombat.InCombat;
 import eagleseye.incombat.api.CombatCheck;
-import eagleseye.incombat.util.EffectUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,9 +23,9 @@ public class PlayerEntityMixin {
 
     @Inject(method = "attack", at = @At("TAIL"))
     private void enterCombatOnAttack(Entity target, CallbackInfo ci){
-        if(InCombat.COMBAT_CONFIG.onAttack() && target.isAttackable()){
-            PlayerEntity player = (PlayerEntity) (Object) this;
-            EffectUtils.applyCombatEffect(player);
-        }
+//        if(InCombat.COMBAT_CONFIG.onAttack() && target.isAttackable()){
+//            PlayerEntity player = (PlayerEntity) (Object) this;
+//            EffectUtils.applyCombatEffect(player);
+//        }
     }
 }
