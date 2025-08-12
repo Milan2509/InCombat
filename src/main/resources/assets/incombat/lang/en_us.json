@@ -6,6 +6,8 @@
   "text.config.incombat.section.general": "General",
   "text.config.incombat.option.disableNaturalRegen": "Disable natural regeneration while in combat",
   "text.config.incombat.option.alwaysActive": "Always 'in combat'",
+  "text.config.incombat.option.onAttack": "Be 'in combat' when attacking",
+  "text.config.incombat.option.creativeMode": "Can be 'in combat' when in creative",
 
   "text.config.incombat.category.damageSources": "Damage Sources that should activate 'in combat'",
   "text.config.incombat.option.damageSources.always": "Always (When the player takes any form of damage)",
@@ -21,5 +23,7 @@
   "text.config.incombat.section.hudRenderer": "HUD Renderer",
   "text.config.incombat.option.renderHud": "Render HUD",
   "text.config.incombat.option.xOffset": "X Offset",
-  "text.config.incombat.option.yOffset": "Y Offset"
+  "text.config.incombat.option.yOffset": "Y Offset",
+
+  "text.config.incombat.option.waystones": "Enable Waystones integration"
 }

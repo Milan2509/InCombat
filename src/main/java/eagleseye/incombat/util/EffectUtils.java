@@ -9,6 +9,9 @@ import static eagleseye.incombat.InCombat.COMBAT_CONFIG;
 
 public class EffectUtils {
     public static void applyCombatEffect(PlayerEntity player){
+        //Should not apply when player is in creative + config
+        if(COMBAT_CONFIG.creativeMode() && player.isCreative()) return;
+
         player.addStatusEffect(new StatusEffectInstance(InCombat.IN_COMBAT,
                 COMBAT_CONFIG.inCombatDuration(), 0, true, false));
     }

@@ -3,13 +3,13 @@
 	"id": "incombat",
 	"version": "${version}",
 	"name": "In Combat",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Detects when the player is in combat and prevents certain actions. Highly configurable!",
 	"authors": [
-		"Me!"
+		"EaglesEye"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Milan2509/InCombat"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/incombat/icon.png",
@@ -30,6 +30,6 @@
 		"owo": ">=0.11.2"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"waystones": "*"
 	}
 }

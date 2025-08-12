@@ -20,6 +20,9 @@ public class InCombatConfigModel {
     @Comment("If the effect should always be active")
     public boolean alwaysActive = false;
 
+    @Comment("If the effect should apply when in creative mode")
+    public boolean creativeMode = false;
+
     @Comment("The types of damage that will cause the 'in combat' effect")
     @Nest
     public ApplyEffectDamageSources damageSources = new ApplyEffectDamageSources();
@@ -34,6 +37,9 @@ public class InCombatConfigModel {
         public boolean fallDamage = false;
         public boolean dragonBreath = true;
     }
+
+    @Comment("If the player should be in combat when they attacked an entity")
+    public boolean onAttack = true;
 
     @Comment("If the mod should check for any effects that will cause the player to be in combat (see list below)")
     public boolean checkForEffects = true;
