@@ -1,5 +1,6 @@
 package eagleseye.incombat.mixin;
 
+import eagleseye.incombat.api.CombatCheck;
 import eagleseye.incombat.integrations.WaystonesIntegrations;
 import eagleseye.incombat.util.DependencyUtils;
 import eagleseye.incombat.util.EffectUtils;
@@ -44,33 +45,24 @@ public class LivingEntityMixin {
         //Dragon Breath
         if(COMBAT_CONFIG.damageSources.dragonBreath() && source.isOf(DamageTypes.DRAGON_BREATH)) canApply = true;
 
-        //Effects
-        if(COMBAT_CONFIG.checkForEffects()) {
-            for (String effect : COMBAT_CONFIG.applyEffects()){
-                if(EffectUtils.hasEffectWithKeyword(player, effect)){
-                    canApply = true;
-                }
-            }
-        }
-
-        //Apply to attack (when enabled)
-//        if(InCombat.COMBAT_CONFIG.onAttack()){
-//            if(attacker.isPlayer()){
-//                LivingEntity attacker1 = (LivingEntity) attacker;
-//                PlayerEntity playerAttacker = attacker1.getCommandSource().getPlayer();
-//                applyCombatEffect(playerAttacker);
-//            }
-//        }
-
         //Apply Effect, if possible
         if(canApply) applyCombatEffect(player);
     }
 
-    @Inject(method = "tick", at = @At("HEAD"))
+    @Inject(method = "tick", at = @At("TAIL"))
     private void playerHasEffectOrAlwaysInCombat(CallbackInfo ci){
         if ((LivingEntity)(Object)this instanceof PlayerEntity player){
             //Always active
             if(COMBAT_CONFIG.alwaysActive()) applyCombatEffect(player);
+
+            //Effects
+            if(COMBAT_CONFIG.checkForEffects() && !CombatCheck.isPlayerInCombat(player)) {
+                for (String effect : COMBAT_CONFIG.applyEffects()){
+                    if(EffectUtils.hasEffectWithKeyword(player, effect)){
+                        applyCombatEffect(player);
+                    }
+                }
+            }
 
             //Waystones integration
             if(DependencyUtils.isWaystonesLoaded()) {

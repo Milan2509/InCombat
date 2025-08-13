@@ -27,6 +27,9 @@ public class InCombatConfigModel {
     @Nest
     public ApplyEffectDamageSources damageSources = new ApplyEffectDamageSources();
 
+    @Comment("If the mod should check for any effects that will cause the player to be in combat (see list below)")
+    public boolean checkForEffects = true;
+
     public static class ApplyEffectDamageSources{
         @Comment("if the effect applies always no matter the damage source")
         public boolean always = false;
@@ -38,17 +41,12 @@ public class InCombatConfigModel {
         public boolean dragonBreath = true;
     }
 
-//    @Comment("If the player should be in combat when they attacked an entity")
-//    public boolean onAttack = true;
-
-    @Comment("If the mod should check for any effects that will cause the player to be in combat (see list below)")
-    public boolean checkForEffects = true;
     @Comment("""
             Which effects should activate 'in combat'
-            Checks if any effect CONTAINS the string (e.g. bleed, will allow for my_mod:bleeding or my_other_mod:bleed
-            Checks for the translation key (e.g. regeneration would be effect.minecraft.regeneration)
+            Checks if any effect CONTAINS the string (example: bleed, will allow for my_mod:bleeding or my_other_mod:bleed
+            Checks for the translation key (example: regeneration would be effect.minecraft.regeneration)
             
-            Recommended format for specific effects: <mod_id>:<effect>
+            Recommended format for specific effects: <mod_id>.<effect>
             """)
     public List<String> applyEffects = new ArrayList<>();
 

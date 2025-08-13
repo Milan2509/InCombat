@@ -9,16 +9,16 @@
   "text.config.incombat.option.onAttack": "Be 'in combat' when attacking",
   "text.config.incombat.option.creativeMode": "Can be 'in combat' when in creative",
 
-  "text.config.incombat.category.damageSources": "Damage Sources that should activate 'in combat'",
-  "text.config.incombat.option.damageSources.always": "Always (When the player takes any form of damage)",
+  "text.config.incombat.category.damageSources": "Damage sources that cause in combat",
+  "text.config.incombat.option.damageSources.always": "All",
   "text.config.incombat.option.damageSources.player": "Player",
   "text.config.incombat.option.damageSources.entity": "Any Entity",
   "text.config.incombat.option.damageSources.fire": "Fire",
   "text.config.incombat.option.damageSources.fallDamage": "Fall Damage",
   "text.config.incombat.option.damageSources.dragonBreath": "Dragon Breath",
 
-  "text.config.incombat.option.checkForEffects": "Should Effects make player 'in combat'",
-  "text.config.incombat.option.applyEffects": "Which effects should activate 'in combat' (See file for more info)",
+  "text.config.incombat.option.checkForEffects": "Effects set play in combat",
+  "text.config.incombat.option.applyEffects": "In combat effects (see file for more info)",
 
   "text.config.incombat.section.hudRenderer": "HUD Renderer",
   "text.config.incombat.option.renderHud": "Render HUD",
