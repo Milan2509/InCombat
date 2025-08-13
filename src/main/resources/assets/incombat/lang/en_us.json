@@ -4,6 +4,7 @@
 
   "text.config.incombat.title": "In Combat Config",
   "text.config.incombat.section.general": "General",
+  "text.config.incombat.option.combatDuration": "Time the player is 'in combat' (in ticks)",
   "text.config.incombat.option.disableNaturalRegen": "Disable natural regeneration while in combat",
   "text.config.incombat.option.alwaysActive": "Always 'in combat'",
   "text.config.incombat.option.onAttack": "Be 'in combat' when attacking",
@@ -25,5 +26,6 @@
   "text.config.incombat.option.xOffset": "X Offset",
   "text.config.incombat.option.yOffset": "Y Offset",
 
+  "text.config.incombat.section.modIntegrations": "Mod Integrations",
   "text.config.incombat.option.waystones": "Enable Waystones integration"
 }
