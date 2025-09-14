@@ -14,21 +14,18 @@ public class InCombatConfigModel {
     @Comment("duration that the effect is applied, in ticks (20 = 1 second)")
     public int inCombatDuration = 300;
 
-    @Comment("Disable natural health regen while in combat")
-    public boolean disableNaturalRegen = false;
-
     @Comment("If the effect should always be active")
     public boolean alwaysActive = false;
 
     @Comment("If the effect should apply when in creative mode")
     public boolean creativeMode = false;
 
+    @Comment("If the mod should check for any effects that will cause the player to be in combat (see list below)")
+    public boolean checkForEffects = true;
+
     @Comment("The types of damage that will cause the 'in combat' effect")
     @Nest
     public ApplyEffectDamageSources damageSources = new ApplyEffectDamageSources();
-
-    @Comment("If the mod should check for any effects that will cause the player to be in combat (see list below)")
-    public boolean checkForEffects = true;
 
     public static class ApplyEffectDamageSources{
         @Comment("if the effect applies always no matter the damage source")
@@ -49,6 +46,19 @@ public class InCombatConfigModel {
             Recommended format for specific effects: <mod_id>.<effect>
             """)
     public List<String> applyEffects = new ArrayList<>();
+
+    @SectionHeader("whileInCombat")
+    @Comment("Kills the player when they disconnect while in combat")
+    public boolean dieOnDisconnect = true;
+
+    @Comment("Disable natural health regen while in combat")
+    public boolean disableNaturalRegen = false;
+
+    @Comment("Disable block breaking while in combat")
+    public boolean disableBlockBreaking = false;
+
+    @Comment("Disable block placing while in combat")
+    public boolean disableBlockPlacing = false;
 
     @SectionHeader("hudRenderer")
     @Comment("Should the HUD element be rendered")

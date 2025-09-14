@@ -5,9 +5,7 @@
   "text.config.incombat.title": "In Combat Config",
   "text.config.incombat.section.general": "General",
   "text.config.incombat.option.inCombatDuration": "Time the player is 'in combat' (in ticks)",
-  "text.config.incombat.option.disableNaturalRegen": "Disable natural regeneration while in combat",
   "text.config.incombat.option.alwaysActive": "Always 'in combat'",
-  "text.config.incombat.option.onAttack": "Be 'in combat' when attacking",
   "text.config.incombat.option.creativeMode": "Can be 'in combat' when in creative",
 
   "text.config.incombat.category.damageSources": "Damage sources that cause in combat",
@@ -18,8 +16,14 @@
   "text.config.incombat.option.damageSources.fallDamage": "Fall Damage",
   "text.config.incombat.option.damageSources.dragonBreath": "Dragon Breath",
 
-  "text.config.incombat.option.checkForEffects": "Effects set play in combat",
+  "text.config.incombat.option.checkForEffects": "Effects set player in combat",
   "text.config.incombat.option.applyEffects": "In combat effects (see file for more info)",
+
+  "text.config.incombat.section.whileInCombat": "While In Combat",
+  "text.config.incombat.option.dieOnDisconnect": "Die on disconnect in combat",
+  "text.config.incombat.option.disableNaturalRegen": "Disable natural regeneration while in combat",
+  "text.config.incombat.option.disableBlockBreaking": "Disable block breaking while in combat",
+  "text.config.incombat.option.disableBlockPlacing": "Disable block placing while in combat",
 
   "text.config.incombat.section.hudRenderer": "HUD Renderer",
   "text.config.incombat.option.renderHud": "Render HUD",

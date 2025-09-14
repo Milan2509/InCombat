@@ -7,7 +7,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 public class PlayerDisconnectLogic {
     private static void killPlayerOnDisconnect(ServerPlayerEntity player){
-        if(CombatCheck.isPlayerInCombat(player)){
+        if(CombatCheck.isPlayerInCombat(player) && InCombat.COMBAT_CONFIG.dieOnDisconnect()){
             player.kill();
         }
     }
