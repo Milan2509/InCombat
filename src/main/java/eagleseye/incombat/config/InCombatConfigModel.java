@@ -57,8 +57,13 @@ public class InCombatConfigModel {
     @Comment("Disable block breaking while in combat")
     public boolean disableBlockBreaking = false;
 
+    @Comment("Blocks that CAN be broken while in combat")
+    public List<String> blockBreakingWhitelist = new ArrayList<>();
+
     @Comment("Disable block placing while in combat")
     public boolean disableBlockPlacing = false;
+
+    public List<String> blockPlacingWhitelist = new ArrayList<>();
 
     @SectionHeader("hudRenderer")
     @Comment("Should the HUD element be rendered")

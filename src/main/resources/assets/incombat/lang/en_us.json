@@ -23,7 +23,9 @@
   "text.config.incombat.option.dieOnDisconnect": "Die on disconnect in combat",
   "text.config.incombat.option.disableNaturalRegen": "Disable natural regeneration while in combat",
   "text.config.incombat.option.disableBlockBreaking": "Disable block breaking while in combat",
+  "text.config.incombat.option.blockBreakingWhitelist": "Block breaking whitelist",
   "text.config.incombat.option.disableBlockPlacing": "Disable block placing while in combat",
+  "text.config.incombat.option.blockPlacingWhitelist": "Block placing whitelist",
 
   "text.config.incombat.section.hudRenderer": "HUD Renderer",
   "text.config.incombat.option.renderHud": "Render HUD",
