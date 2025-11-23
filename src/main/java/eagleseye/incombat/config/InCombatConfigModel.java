@@ -17,6 +17,9 @@ public class InCombatConfigModel {
     @Comment("If the effect should always be active")
     public boolean alwaysActive = false;
 
+    @Comment("Sets the player in combat when dealing damage")
+    public boolean damageDealt = true;
+
     @Comment("If the effect should apply when in creative mode")
     public boolean creativeMode = false;
 

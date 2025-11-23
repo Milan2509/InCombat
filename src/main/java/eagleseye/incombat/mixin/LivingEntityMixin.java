@@ -27,10 +27,15 @@ public class LivingEntityMixin {
 
         boolean canApply = false;
 
+        // If the attacker is a player and has damaged the entity
+        if(COMBAT_CONFIG.damageDealt() && attacker instanceof PlayerEntity player1){
+            applyCombatEffect(player1);
+        };
+
         //Checks to prevent issues
         if (!(self instanceof PlayerEntity player) || player.getWorld().isClient) return;
 
-        //Config checks
+        //Damage Sources checks
         //Always
         if(COMBAT_CONFIG.damageSources.always()) canApply = true;
         //Entity
