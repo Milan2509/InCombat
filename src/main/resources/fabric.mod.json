@@ -20,7 +20,14 @@
 		]
 	},
 	"mixins": [
-		"incombat.mixins.json"
+		"incombat.mixins.json",
+		{
+			"config": "spell_engine_compat.mixin.json",
+			"environment": "*",
+			"depends": [
+				"spell_engine"
+			]
+		}
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",

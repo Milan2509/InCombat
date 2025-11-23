@@ -1,4 +1,4 @@
-package eagleseye.incombat.integrations;
+package eagleseye.incombat.compat;
 
 import eagleseye.incombat.api.CombatCheck;
 import net.blay09.mods.waystones.block.ModBlocks;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 import static eagleseye.incombat.InCombat.COMBAT_CONFIG;
 
-public class WaystonesIntegrations {
+public class WaystonesCompat {
     public static void stopTeleportItems(PlayerEntity player){
         if (COMBAT_CONFIG.waystones() && CombatCheck.isPlayerInCombat(player)) {
             Item handItem = player.getStackInHand(player.getActiveHand()).getItem();

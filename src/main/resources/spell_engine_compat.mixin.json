@@ -1,0 +1,7 @@
+{
+  "required": false,
+  "package": "eagleseye.incombat.mixin",
+  "mixins": [
+    "SpellEngineMixin"
+  ]
+}

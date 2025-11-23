@@ -34,5 +34,7 @@
   "text.config.incombat.option.yOffset": "Y Offset",
 
   "text.config.incombat.section.modIntegrations": "Mod Integrations",
-  "text.config.incombat.option.waystones": "Enable Waystones integration"
+  "text.config.incombat.option.waystones": "Enable Waystones integration",
+  "text.config.incombat.option.spellEngine": "Enable Spell Engine integration",
+  "message.incombat.free_cast": "Free Casts Out of Combat"
 }

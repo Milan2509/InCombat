@@ -79,6 +79,8 @@ public class InCombatConfigModel {
     @SectionHeader("modIntegrations")
     @Comment("can't teleport while in combat")
     public boolean waystones = true;
+    @Comment("No rune costs while NOT in combat")
+    public boolean spellEngine = true;
 
     @ExcludeFromScreen
     @Comment("DO NOT TOUCH PLS")

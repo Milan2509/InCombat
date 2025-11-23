@@ -2,7 +2,7 @@ package eagleseye.incombat;
 
 import eagleseye.incombat.config.InCombatConfig;
 import eagleseye.incombat.effect.InCombatEffect;
-import eagleseye.incombat.integrations.WaystonesIntegrations;
+import eagleseye.incombat.compat.WaystonesCompat;
 import eagleseye.incombat.logic.BreakPlaceLogic;
 import eagleseye.incombat.logic.InCombatHud;
 import eagleseye.incombat.logic.PlayerDisconnectLogic;
@@ -39,7 +39,7 @@ public class InCombat implements ModInitializer {
 		BreakPlaceLogic.init();
 
 		//Mod Integrations
-		if (DependencyUtils.isWaystonesLoaded()) WaystonesIntegrations.stopWaystoneInteraction();
+		if (DependencyUtils.isWaystonesLoaded()) WaystonesCompat.stopWaystoneInteraction();
 
 		//Only on first load
 		if(COMBAT_CONFIG.firstLoad()){

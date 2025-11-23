@@ -1,7 +1,7 @@
 package eagleseye.incombat.mixin;
 
 import eagleseye.incombat.api.CombatCheck;
-import eagleseye.incombat.integrations.WaystonesIntegrations;
+import eagleseye.incombat.compat.WaystonesCompat;
 import eagleseye.incombat.util.DependencyUtils;
 import eagleseye.incombat.util.EffectUtils;
 import net.minecraft.entity.Entity;
@@ -71,7 +71,7 @@ public class LivingEntityMixin {
 
             //Waystones integration
             if(DependencyUtils.isWaystonesLoaded()) {
-                WaystonesIntegrations.stopTeleportItems(player);
+                WaystonesCompat.stopTeleportItems(player);
             }
 
         }
