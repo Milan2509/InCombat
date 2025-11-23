@@ -59,6 +59,10 @@ public class InCombat implements ModInitializer {
 			effectsList.add("born_in_chaos_v1.stun");
 			effectsList.add("minecells.disarmed");
 
+			List<String> blockBreakingList = COMBAT_CONFIG.blockBreakingWhitelist();
+			// Bosses of Mass Destruction
+			blockBreakingList.add("bosses_of_mass_destruction:void_blossom");
+			blockBreakingList.add("bosses_of_mass_destruction:obsidilith_rune");
 
 			COMBAT_CONFIG.firstLoad(false);
 		}
