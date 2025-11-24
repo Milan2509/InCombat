@@ -71,6 +71,9 @@ public class InCombatConfigModel {
     @Comment("Blocks that CAN be placed while in combat")
     public List<String> blockPlacingWhitelist = new ArrayList<>();
 
+    @Comment("Additional effects the player should gain when they become in combat")
+    public List<String> additionalEffects = new ArrayList<>();
+
     @SectionHeader("hudRenderer")
     @Comment("Should the HUD element be rendered")
     public boolean renderHud = true;
