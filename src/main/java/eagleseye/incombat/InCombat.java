@@ -42,29 +42,23 @@ public class InCombat implements ModInitializer {
 		if (DependencyUtils.isWaystonesLoaded()) WaystonesCompat.stopWaystoneInteraction();
 
 		//Only on first load
-		if(COMBAT_CONFIG.firstLoad()){
+		if(COMBAT_CONFIG.setDefaultLists()){
 			List<String> effectsList = COMBAT_CONFIG.applyEffects();
-			// Generic
-			effectsList.add("bleed");
-			effectsList.add("stunned");
-
 			//Minecraft
-			effectsList.add("minecraft.wither");
-			effectsList.add("minecraft.poison");
-			effectsList.add("minecraft.weakness");
-
-			//Mod Specific
-			effectsList.add("aether.inebriation");
-			effectsList.add("alexscaves.bubbled");
-			effectsList.add("born_in_chaos_v1.stun");
-			effectsList.add("minecells.disarmed");
+			effectsList.add("minecraft:wither");
+			effectsList.add("minecraft:poison");
+			effectsList.add("minecraft:weakness");
 
 			List<String> blockBreakingList = COMBAT_CONFIG.blockBreakingWhitelist();
 			// Bosses of Mass Destruction
 			blockBreakingList.add("bosses_of_mass_destruction:void_blossom");
 			blockBreakingList.add("bosses_of_mass_destruction:obsidilith_rune");
 
-			COMBAT_CONFIG.firstLoad(false);
+			List<String> damageDealtList = COMBAT_CONFIG.damageDealtBlacklist();
+			// Target Dummy
+			damageDealtList.add("dummmmmmy:target_dummy");
+
+			COMBAT_CONFIG.setDefaultLists(false);
 		}
 	}
 }

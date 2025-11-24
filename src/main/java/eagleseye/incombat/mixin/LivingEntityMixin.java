@@ -9,6 +9,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,59 +23,64 @@ import static eagleseye.incombat.util.EffectUtils.applyCombatEffect;
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
     @Inject(method = "damage", at = @At("TAIL"))
-    private void applyEffectOnDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir){
-        LivingEntity self = (LivingEntity)(Object)this;
+    private void applyEffectOnDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
         Entity attacker = source.getAttacker();
 
         boolean canApply = false;
 
         // If the attacker is a player and has damaged the entity
-        if(COMBAT_CONFIG.damageDealt() && attacker instanceof PlayerEntity player1){
-            applyCombatEffect(player1);
-        };
+        if (COMBAT_CONFIG.damageDealt() && attacker instanceof PlayerEntity player1) {
+            String selfId = Registries.ENTITY_TYPE.getId(self.getType()).toString();
+            if (!COMBAT_CONFIG.damageDealtBlacklist().contains(selfId)) {
+                applyCombatEffect(player1);
+            }
+        }
+        ;
 
         //Checks to prevent issues
         if (!(self instanceof PlayerEntity player) || player.getWorld().isClient) return;
 
         //Damage Sources checks
         //Always
-        if(COMBAT_CONFIG.damageSources.always()) canApply = true;
+        if (COMBAT_CONFIG.damageSources.always()) canApply = true;
         //Entity
-        if(COMBAT_CONFIG.damageSources.entity() && attacker instanceof LivingEntity
+        if (COMBAT_CONFIG.damageSources.entity() && attacker instanceof LivingEntity
                 && !(attacker instanceof PlayerEntity)) canApply = true;
         //Player
-        if(COMBAT_CONFIG.damageSources.entity() && attacker instanceof PlayerEntity) canApply = true;
+        if (COMBAT_CONFIG.damageSources.entity() && attacker instanceof PlayerEntity) canApply = true;
         //Fire
-        if(COMBAT_CONFIG.damageSources.fire() && source.isOf(DamageTypes.ON_FIRE)) canApply = true;
+        if (COMBAT_CONFIG.damageSources.fire() && source.isOf(DamageTypes.ON_FIRE)) canApply = true;
         //Fall Damage
-        if(COMBAT_CONFIG.damageSources.fallDamage() && source.isOf(DamageTypes.FALL)) canApply = true;
+        if (COMBAT_CONFIG.damageSources.fallDamage() && source.isOf(DamageTypes.FALL)) canApply = true;
         //Dragon Breath
-        if(COMBAT_CONFIG.damageSources.dragonBreath() && source.isOf(DamageTypes.DRAGON_BREATH)) canApply = true;
+        if (COMBAT_CONFIG.damageSources.dragonBreath() && source.isOf(DamageTypes.DRAGON_BREATH)) canApply = true;
 
         //Apply Effect, if possible
-        if(canApply) applyCombatEffect(player);
+        if (canApply) applyCombatEffect(player);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
-    private void playerHasEffectOrAlwaysInCombat(CallbackInfo ci){
-        if ((LivingEntity)(Object)this instanceof PlayerEntity player){
+    private void playerHasEffectOrAlwaysInCombat(CallbackInfo ci) {
+        if ((LivingEntity) (Object) this instanceof PlayerEntity player) {
             //Always active
-            if(COMBAT_CONFIG.alwaysActive()) applyCombatEffect(player);
+            if (COMBAT_CONFIG.alwaysActive()) applyCombatEffect(player);
 
             //Effects
-            if(COMBAT_CONFIG.checkForEffects() && !CombatCheck.isPlayerInCombat(player)) {
-                for (String effect : COMBAT_CONFIG.applyEffects()){
-                    if(EffectUtils.hasEffectWithKeyword(player, effect)){
+            if (COMBAT_CONFIG.checkForEffects() && !CombatCheck.isPlayerInCombat(player)) {
+                for (String effect : COMBAT_CONFIG.applyEffects()) {
+                    if (player.hasStatusEffect(Registries.STATUS_EFFECT.get(new Identifier(effect)))) {
                         applyCombatEffect(player);
                     }
                 }
-            }
 
-            //Waystones integration
-            if(DependencyUtils.isWaystonesLoaded()) {
-                WaystonesCompat.stopTeleportItems(player);
-            }
 
+                //Waystones integration
+                if (DependencyUtils.isWaystonesLoaded()) {
+                    WaystonesCompat.stopTeleportItems(player);
+                }
+
+            }
         }
     }
 }

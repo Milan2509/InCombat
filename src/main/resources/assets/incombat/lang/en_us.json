@@ -7,6 +7,7 @@
   "text.config.incombat.option.inCombatDuration": "Time the player is 'in combat' (in ticks)",
   "text.config.incombat.option.alwaysActive": "Always 'in combat'",
   "text.config.incombat.option.damageDealt": "Become in combat when dealing damage",
+  "text.config.incombat.option.damageDealtBlacklist": "Entity damage dealt blacklist",
   "text.config.incombat.option.creativeMode": "Can be 'in combat' when in creative",
 
   "text.config.incombat.category.damageSources": "Damage sources that cause in combat",

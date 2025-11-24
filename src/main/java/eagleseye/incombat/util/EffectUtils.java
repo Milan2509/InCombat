@@ -16,13 +16,13 @@ public class EffectUtils {
                 COMBAT_CONFIG.inCombatDuration(), 0, true, false));
     }
 
-    public static boolean hasEffectWithKeyword(LivingEntity entity, String keyword) {
-        for (StatusEffectInstance instance : entity.getStatusEffects()) {
-            String translationString = instance.getTranslationKey();
-            if (translationString != null && translationString.contains(keyword)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public static boolean hasEffectWithKeyword(LivingEntity entity, String keyword) {
+//        for (StatusEffectInstance instance : entity.getStatusEffects()) {
+//            String translationString = instance.getTranslationKey();
+//            if (translationString != null && translationString.contains(keyword)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }

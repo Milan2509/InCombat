@@ -20,6 +20,9 @@ public class InCombatConfigModel {
     @Comment("Sets the player in combat when dealing damage")
     public boolean damageDealt = true;
 
+    @Comment("Entities that do not set the player in combat when attacked")
+    public List<String> damageDealtBlacklist = new ArrayList<>();
+
     @Comment("If the effect should apply when in creative mode")
     public boolean creativeMode = false;
 
@@ -43,10 +46,9 @@ public class InCombatConfigModel {
 
     @Comment("""
             Which effects should activate 'in combat'
-            Checks if any effect CONTAINS the string (example: bleed, will allow for my_mod:bleeding or my_other_mod:bleed
-            Checks for the translation key (example: regeneration would be effect.minecraft.regeneration)
             
-            Recommended format for specific effects: <mod_id>.<effect>
+            Required format: <mod_id>:<effect>
+            Checks for the registry id (example: regeneration would be minecraft:regeneration)
             """)
     public List<String> applyEffects = new ArrayList<>();
 
@@ -66,6 +68,7 @@ public class InCombatConfigModel {
     @Comment("Disable block placing while in combat")
     public boolean disableBlockPlacing = false;
 
+    @Comment("Blocks that CAN be placed while in combat")
     public List<String> blockPlacingWhitelist = new ArrayList<>();
 
     @SectionHeader("hudRenderer")
@@ -83,6 +86,6 @@ public class InCombatConfigModel {
     public boolean spellEngine = true;
 
     @ExcludeFromScreen
-    @Comment("DO NOT TOUCH PLS")
-    public boolean firstLoad = true;
+    @Comment("DANGER ZONE")
+    public boolean setDefaultLists = true;
 }
