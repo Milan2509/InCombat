@@ -28,6 +28,7 @@
   "text.config.incombat.option.blockBreakingWhitelist": "Block breaking whitelist",
   "text.config.incombat.option.disableBlockPlacing": "Disable block placing while in combat",
   "text.config.incombat.option.blockPlacingWhitelist": "Block placing whitelist",
+  "text.config.incombat.option.additionalEffects": "Additional effects while in combat",
 
   "text.config.incombat.section.hudRenderer": "HUD Renderer",
   "text.config.incombat.option.renderHud": "Render HUD",
