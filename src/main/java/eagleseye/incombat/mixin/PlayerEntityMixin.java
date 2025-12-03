@@ -13,7 +13,7 @@ public class PlayerEntityMixin {
     @Inject(method = "canFoodHeal", at = @At("RETURN"), cancellable = true)
     private void disableHealWhileInCombat(CallbackInfoReturnable<Boolean> cir){
         PlayerEntity player = (PlayerEntity) (Object) this;
-
+        
         if(InCombat.COMBAT_CONFIG.disableNaturalRegen() && CombatCheck.isPlayerInCombat(player)){
             cir.setReturnValue(false);
         } else cir.setReturnValue(true);

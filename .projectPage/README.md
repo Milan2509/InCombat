@@ -41,7 +41,7 @@ Basically everything is configurable inside the mod.
 <details>
 <summary>General</summary>
 <ul>
-    <li>"In Combat" duration (default = 300 ticks / 15 seconds)</li>
+    <li>"In Combat" duration (default = 300 ticks -> 15 seconds)</li>
     <li>Player should die on disconnect (default = true)</li>
     <li>Disable natural regeneration (default = false)</li>
     <li>Disable block breaking (default = false)</li>
@@ -62,6 +62,9 @@ Basically everything is configurable inside the mod.
     </li>
     <li>If effects should set the player "In Combat" (default = true)</li>
     <li>A list of all the effects that set the player "In Combat"</li>
+    <li>Additional effects that the player gets when "In Combat"</li>
+    <li>Attacking sets the player "In Combat"</li>
+    <li>Attacked entities that do not set the player "In Combat"</li>
 </ul>
 
 </details>

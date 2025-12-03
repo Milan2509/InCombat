@@ -36,7 +36,6 @@ public class LivingEntityMixin {
                 applyCombatEffect(player1);
             }
         }
-        ;
 
         //Checks to prevent issues
         if (!(self instanceof PlayerEntity player) || player.getWorld().isClient) return;
