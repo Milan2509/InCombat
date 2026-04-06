@@ -9,10 +9,12 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class InCombatRestrictions {
-    public static ActionResult preventBlockBreaking(PlayerEntity player) {
-        if(InCombatManager.hasInCombatEffect(player)) {
+    public static ActionResult preventBlockBreaking(PlayerEntity player, World world, BlockPos pos) {
+        if(!canBreakBlock(player, world, pos)) {
             return ActionResult.FAIL;
         }
         return ActionResult.PASS;
@@ -29,16 +31,33 @@ public class InCombatRestrictions {
         Item handItem = player.getStackInHand(hand).getItem();
         String heldBlockId =  Registries.ITEM.getId(handItem).getNamespace() + ":" + Registries.ITEM.getId(handItem).getPath();
 
-        // Return false if: player is in combat, hand item is a block, hand item is not whitelisted
-        return !(InCombatManager.hasInCombatEffect(player) && handItem instanceof BlockItem
-                && !InCombat.serverConfig.combat_restrictions.block_placing_whitelist.contains(heldBlockId));
+        // Return false if: player is in combat, hand item is a block, hand item is not whitelisted and the features is enabled in the config
+        return !(
+                InCombatManager.hasInCombatEffect(player)
+                && handItem instanceof BlockItem
+                && !InCombat.serverConfig.combat_restrictions.block_placing_whitelist.contains(heldBlockId)
+                && InCombat.serverConfig.combat_restrictions.disable_block_placing
+        );
+    }
+
+    private static boolean canBreakBlock(PlayerEntity player, World world, BlockPos pos) {
+        String blockId = Registries.BLOCK.getId(world.getBlockState(pos).getBlock()).getNamespace() + ":" +  Registries.BLOCK.getId(world.getBlockState(pos).getBlock()).getPath();
+
+        // Return false if: player is in combat, target block is not in whitelisted and the feature is enabled in the config
+        return !(
+                InCombatManager.hasInCombatEffect(player)
+                && !InCombat.serverConfig.combat_restrictions.block_breaking_whitelist.contains(blockId)
+                && InCombat.serverConfig.combat_restrictions.disable_block_breaking
+        );
     }
 
     public static void initializeEvents(){
         // Break Block Prevention
-        AttackBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos, direction) -> InCombatRestrictions.preventBlockBreaking(playerEntity)));
+        AttackBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos, direction) ->
+                InCombatRestrictions.preventBlockBreaking(playerEntity, world, blockPos)));
         // Place Block Prevention
-        UseBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos) -> InCombatRestrictions.preventBlockPlacing(playerEntity, hand)));
+        UseBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos) ->
+                InCombatRestrictions.preventBlockPlacing(playerEntity, hand)));
     }
 
 }
