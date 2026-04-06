@@ -16,7 +16,7 @@ public class LivingEntityMixin {
         LivingEntity self = (LivingEntity)(Object)this;
 
         if(self instanceof PlayerEntity player){
-            InCombatManager.applyInCombatEffect(player);
+            InCombatManager.applyInCombatEffect(player, damageSource);
         }
     }
 }

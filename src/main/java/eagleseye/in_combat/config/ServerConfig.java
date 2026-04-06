@@ -15,10 +15,21 @@ public class ServerConfig implements ConfigData {
     @Comment("Restrictions while the player is in combat")
     public CombatRestrictions combat_restrictions = new CombatRestrictions();
 
+    @Comment("Damage sources that will set the player in combat")
+    public InCombatSources in_combat_sources = new InCombatSources();
+
     public static class CombatRestrictions{
         public boolean disable_block_breaking = false;
         public List<String> block_breaking_whitelist = new ArrayList<>();
         public boolean disable_block_placing = false;
         public List<String> block_placing_whitelist = new ArrayList<>();
+    }
+
+    public static class InCombatSources {
+        public boolean all = false;
+        public boolean player = true;
+        public boolean entity = true;
+        public boolean fire = false;
+        public boolean fall_damage = false;
     }
 }
