@@ -21,8 +21,11 @@ public class ServerConfig implements ConfigData {
     public static class CombatRestrictions{
         public boolean disable_block_breaking = false;
         public List<String> block_breaking_whitelist = new ArrayList<>();
+
         public boolean disable_block_placing = false;
         public List<String> block_placing_whitelist = new ArrayList<>();
+
+        public boolean kill_on_disconnect = false;
     }
 
     public static class InCombatSources {

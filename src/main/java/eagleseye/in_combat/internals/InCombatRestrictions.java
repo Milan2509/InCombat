@@ -1,18 +1,23 @@
 package eagleseye.in_combat.internals;
 
 import eagleseye.in_combat.InCombat;
+import eagleseye.in_combat.config.ServerConfig;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class InCombatRestrictions {
+    private static final ServerConfig.CombatRestrictions restrictionsConfig = InCombat.serverConfig.combat_restrictions;
+
     public static ActionResult preventBlockBreaking(PlayerEntity player, World world, BlockPos pos) {
         if(!canBreakBlock(player, world, pos)) {
             return ActionResult.FAIL;
@@ -27,6 +32,12 @@ public class InCombatRestrictions {
         return ActionResult.PASS;
     }
 
+    public static void killOnDisconnect(ServerPlayerEntity player) {
+        if(InCombatManager.hasInCombatEffect(player) && restrictionsConfig.kill_on_disconnect) {
+            player.kill();
+        }
+    }
+
     private static boolean canPlaceBlock(PlayerEntity player, Hand hand) {
         Item handItem = player.getStackInHand(hand).getItem();
         String heldBlockId =  Registries.ITEM.getId(handItem).getNamespace() + ":" + Registries.ITEM.getId(handItem).getPath();
@@ -35,8 +46,8 @@ public class InCombatRestrictions {
         return !(
                 InCombatManager.hasInCombatEffect(player)
                 && handItem instanceof BlockItem
-                && !InCombat.serverConfig.combat_restrictions.block_placing_whitelist.contains(heldBlockId)
-                && InCombat.serverConfig.combat_restrictions.disable_block_placing
+                && !restrictionsConfig.block_placing_whitelist.contains(heldBlockId)
+                && restrictionsConfig.disable_block_placing
         );
     }
 
@@ -46,8 +57,8 @@ public class InCombatRestrictions {
         // Return false if: player is in combat, target block is not in whitelisted and the feature is enabled in the config
         return !(
                 InCombatManager.hasInCombatEffect(player)
-                && !InCombat.serverConfig.combat_restrictions.block_breaking_whitelist.contains(blockId)
-                && InCombat.serverConfig.combat_restrictions.disable_block_breaking
+                && !restrictionsConfig.block_breaking_whitelist.contains(blockId)
+                && restrictionsConfig.disable_block_breaking
         );
     }
 
@@ -58,6 +69,9 @@ public class InCombatRestrictions {
         // Place Block Prevention
         UseBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos) ->
                 InCombatRestrictions.preventBlockPlacing(playerEntity, hand)));
+        // Kill on Disconnect
+        ServerPlayConnectionEvents.DISCONNECT.register(((playerEntity, server) ->
+                killOnDisconnect(playerEntity.player)));
     }
 
 }
