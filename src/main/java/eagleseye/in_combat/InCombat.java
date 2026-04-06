@@ -2,11 +2,17 @@ package eagleseye.in_combat;
 
 import eagleseye.in_combat.config.ServerConfig;
 import eagleseye.in_combat.config.ServerConfigWrapper;
+import eagleseye.in_combat.internals.InCombatEffect;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +20,9 @@ public class InCombat implements ModInitializer {
 	public static final String MOD_ID = "in_combat";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	ServerConfig serverConfig;
+	public static final StatusEffect IN_COMBAT_EFFECT = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "in_combat"), new InCombatEffect());
+
+	public static ServerConfig serverConfig;
 
 	@Override
 	public void onInitialize() {
