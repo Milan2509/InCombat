@@ -1,0 +1,4 @@
+{
+  "effect.in_combat.in_combat": "In Combat",
+  "effect.in_combat.in_combat.desc": "Applied when fighting enemies, prevents certain actions"
+}
