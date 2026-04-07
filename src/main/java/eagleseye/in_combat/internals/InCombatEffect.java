@@ -13,4 +13,9 @@ public class InCombatEffect extends StatusEffect {
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
     }
+
+    @Override
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        return super.applyUpdateEffect(entity, amplifier);
+    }
 }

@@ -38,4 +38,22 @@ public class InCombatManager {
     public static boolean hasInCombatEffect(PlayerEntity player) {
         return player.hasStatusEffect(IN_COMBAT_EFFECT);
     }
+
+    /*
+     *
+     *
+     * Logic for the nbt system
+     *
+     *
+     */
+
+//    public static void tickInCombatState(PlayerEntity player) {}
+//
+//    public static void setPlayerInCombat(PlayerEntity player) {}
+//
+//    public static void getPlayerInCombat(PlayerEntity player) {}
+//
+//    private static void writeInCombatData(PlayerEntity player) {}
+//
+//    private static void readInCombatData(PlayerEntity player) {}
 }

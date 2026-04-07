@@ -26,6 +26,8 @@ public class ServerConfig implements ConfigData {
         public List<String> block_placing_whitelist = new ArrayList<>();
 
         public boolean kill_on_disconnect = false;
+
+        public boolean prevent_natural_health_regeneration = false;
     }
 
     public static class InCombatSources {

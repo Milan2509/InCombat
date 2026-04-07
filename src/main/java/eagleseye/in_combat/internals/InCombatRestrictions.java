@@ -10,10 +10,12 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class InCombatRestrictions {
     private static final ServerConfig.CombatRestrictions restrictionsConfig = InCombat.serverConfig.combat_restrictions;
@@ -35,6 +37,15 @@ public class InCombatRestrictions {
     public static void killOnDisconnect(ServerPlayerEntity player) {
         if(InCombatManager.hasInCombatEffect(player) && restrictionsConfig.kill_on_disconnect) {
             player.kill();
+        }
+    }
+
+    public static void preventNaturalHealthRegeneration(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
+        player.sendMessage(Text.literal("Player Found!"));
+        player.sendMessage(Text.literal("Config: " + restrictionsConfig.prevent_natural_health_regeneration));
+        if(InCombatManager.hasInCombatEffect(player) && restrictionsConfig.prevent_natural_health_regeneration) {
+            player.sendMessage(Text.literal("If statement passed!"));
+            cir.setReturnValue(false);
         }
     }
 
