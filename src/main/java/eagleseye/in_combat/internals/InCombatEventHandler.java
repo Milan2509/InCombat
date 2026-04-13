@@ -36,9 +36,9 @@ public class InCombatEventHandler {
          */
         // Break Block Prevention
         AttackBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos, direction) ->
-                GraceRestrictions.preventBlockBreaking(playerEntity, world, blockPos)));
+                GraceModifiers.preventBlockBreaking(playerEntity, world, blockPos)));
         // Place Block Prevention
         UseBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos) ->
-                GraceRestrictions.preventBlockPlacing(playerEntity, hand)));
+                GraceModifiers.preventBlockPlacing(playerEntity, hand)));
     }
 }

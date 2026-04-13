@@ -18,8 +18,8 @@ public class ServerConfig implements ConfigData {
         @Comment("Restrictions while the player has grace")
         public CombatRestrictionsConfig restrictions = new CombatRestrictionsConfig();
 
-        @Comment("Should the player be invulnerable to all damage while having grace")
-        public boolean invulnerable = false;
+//        @Comment("Should the player be invulnerable to all damage while having grace")
+//        public boolean invulnerable = false;
 
         @Comment("Should the player be healed to full while having grace")
         public boolean heal = false;

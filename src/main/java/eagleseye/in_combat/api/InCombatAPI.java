@@ -1,6 +1,8 @@
 package eagleseye.in_combat.api;
 
+import eagleseye.in_combat.InCombat;
 import eagleseye.in_combat.internals.InCombatManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class InCombatAPI {
@@ -20,6 +22,22 @@ public class InCombatAPI {
      */
     public static void applyGraceEffect(ServerPlayerEntity player, int duration) {
         InCombatManager.applyGraceEffect(player, duration * 20);
+    }
+
+    /**
+     * This method can be used to remove the combat effect from the player
+     * @param player the ServerPlayerEntity instance of the player to remove the effect from
+     */
+    public static void removeCombatEffect(ServerPlayerEntity player) {
+        player.removeStatusEffect(Registries.STATUS_EFFECT.getEntry(InCombat.combatEffect));
+    }
+
+    /**
+     * This method can be used to remove the grace effect from the player
+     * @param player the ServerPlayerEntity instance of the player to remove the effect from
+     */
+    public static void removeGraceEffect(ServerPlayerEntity player) {
+        player.removeStatusEffect(Registries.STATUS_EFFECT.getEntry(InCombat.graceEffect));
     }
 
     /**

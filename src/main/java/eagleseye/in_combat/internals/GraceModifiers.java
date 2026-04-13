@@ -11,7 +11,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GraceRestrictions {
+public class GraceModifiers {
     private static final ServerConfig.CombatRestrictionsConfig restrictionsConfig = InCombat.serverConfig.grace_settings.restrictions;
 
     public static ActionResult preventBlockBreaking(PlayerEntity player, World world, BlockPos pos) {
@@ -34,7 +34,7 @@ public class GraceRestrictions {
 
         // Return false if: player is in combat, hand item is a block, hand item is not whitelisted and the features is enabled in the config
         return !(
-                InCombatManager.hasCombatEffect(player)
+                InCombatManager.hasGraceEffect(player)
                 && handItem instanceof BlockItem
                 && !restrictionsConfig.block_placing_whitelist.contains(heldBlockId)
                 && restrictionsConfig.disable_block_placing
@@ -46,7 +46,7 @@ public class GraceRestrictions {
 
         // Return false if: player is in combat, target block is not in whitelisted and the feature is enabled in the config
         return !(
-                InCombatManager.hasCombatEffect(player)
+                InCombatManager.hasGraceEffect(player)
                 && !restrictionsConfig.block_breaking_whitelist.contains(blockId)
                 && restrictionsConfig.disable_block_breaking
         );
