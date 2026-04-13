@@ -1,18 +1,16 @@
 package eagleseye.in_combat;
 
+import eagleseye.in_combat.config.ClientConfig;
+import eagleseye.in_combat.config.ClientConfigWrapper;
 import eagleseye.in_combat.config.ServerConfig;
 import eagleseye.in_combat.config.ServerConfigWrapper;
 import eagleseye.in_combat.internals.InCombatEffect;
 import eagleseye.in_combat.internals.InCombatEventHandler;
-import eagleseye.in_combat.internals.InCombatManager;
-import eagleseye.in_combat.internals.InCombatRestrictions;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import net.fabricmc.api.ModInitializer;
 
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -26,12 +24,15 @@ public class InCombat implements ModInitializer {
 	public static InCombatEffect inCombatEffect;
 
 	public static ServerConfig serverConfig;
+	public static ClientConfig clientConfig;
 
 	@Override
 	public void onInitialize() {
 		// Config
 		AutoConfig.register(ServerConfigWrapper.class, PartitioningSerializer.wrap(JanksonConfigSerializer::new));
+		AutoConfig.register(ClientConfigWrapper.class, PartitioningSerializer.wrap(JanksonConfigSerializer::new));
 		serverConfig = AutoConfig.getConfigHolder(ServerConfigWrapper.class).getConfig().server;
+		clientConfig = AutoConfig.getConfigHolder(ClientConfigWrapper.class).getConfig().client;
 
 		// Registry
 		inCombatEffect = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "in_combat"), new InCombatEffect());
