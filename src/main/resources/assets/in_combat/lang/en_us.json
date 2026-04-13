@@ -1,4 +1,7 @@
 {
-  "effect.in_combat.in_combat": "In Combat",
-  "effect.in_combat.in_combat.desc": "Applied when fighting enemies, prevents certain actions"
+  "effect.in_combat.combat": "In Combat",
+  "effect.in_combat.combat.desc": "Applied when fighting enemies, prevents certain actions",
+
+  "effect.in_combat.grace": "Grace",
+  "effect.in_combat.grace.desc": "Applied when in a safe space, prevents certain actions"
 }

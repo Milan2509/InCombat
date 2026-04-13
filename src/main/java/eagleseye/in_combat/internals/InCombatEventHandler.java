@@ -8,20 +8,37 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 public class InCombatEventHandler {
     public static void init(){
+        /*
+        *
+        * Combat Effect
+        *
+        */
         // Apply In Combat Effect
         ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, baseDamageTaken, damageTaken, blocked) -> {
             if (entity instanceof ServerPlayerEntity player) {
-                InCombatManager.applyInCombatEffect(player, source);
+                InCombatManager.applyCombatEffect(player, source);
             }
         });
         // Break Block Prevention
         AttackBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos, direction) ->
-                InCombatRestrictions.preventBlockBreaking(playerEntity, world, blockPos)));
+                CombatRestrictions.preventBlockBreaking(playerEntity, world, blockPos)));
         // Place Block Prevention
         UseBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos) ->
-                InCombatRestrictions.preventBlockPlacing(playerEntity, hand)));
+                CombatRestrictions.preventBlockPlacing(playerEntity, hand)));
         // Kill on Disconnect
         ServerPlayConnectionEvents.DISCONNECT.register(((playerEntity, server) ->
-                InCombatRestrictions.killOnDisconnect(playerEntity.player)));
+                CombatRestrictions.killOnDisconnect(playerEntity.player)));
+
+        /*
+         *
+         * Grace Effect
+         *
+         */
+        // Break Block Prevention
+        AttackBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos, direction) ->
+                GraceRestrictions.preventBlockBreaking(playerEntity, world, blockPos)));
+        // Place Block Prevention
+        UseBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos) ->
+                GraceRestrictions.preventBlockPlacing(playerEntity, hand)));
     }
 }

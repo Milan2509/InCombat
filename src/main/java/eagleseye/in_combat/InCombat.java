@@ -4,8 +4,9 @@ import eagleseye.in_combat.config.ClientConfig;
 import eagleseye.in_combat.config.ClientConfigWrapper;
 import eagleseye.in_combat.config.ServerConfig;
 import eagleseye.in_combat.config.ServerConfigWrapper;
-import eagleseye.in_combat.internals.InCombatEffect;
+import eagleseye.in_combat.internals.effect.CombatEffect;
 import eagleseye.in_combat.internals.InCombatEventHandler;
+import eagleseye.in_combat.internals.effect.GraceEffect;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -21,7 +22,8 @@ public class InCombat implements ModInitializer {
 	public static final String MOD_ID = "in_combat";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static InCombatEffect inCombatEffect;
+	public static CombatEffect combatEffect;
+	public static GraceEffect graceEffect;
 
 	public static ServerConfig serverConfig;
 	public static ClientConfig clientConfig;
@@ -35,7 +37,8 @@ public class InCombat implements ModInitializer {
 		clientConfig = AutoConfig.getConfigHolder(ClientConfigWrapper.class).getConfig().client;
 
 		// Registry
-		inCombatEffect = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "in_combat"), new InCombatEffect());
+		combatEffect = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "combat"), new CombatEffect());
+		graceEffect = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "grace"), new GraceEffect());
 		InCombatEventHandler.init();
 	}
 }

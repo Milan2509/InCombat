@@ -6,15 +6,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-public class InCombatRestrictions {
-    private static final ServerConfig.CombatRestrictions restrictionsConfig = InCombat.serverConfig.combat_restrictions;
+public class GraceRestrictions {
+    private static final ServerConfig.CombatRestrictionsConfig restrictionsConfig = InCombat.serverConfig.grace_settings.restrictions;
 
     public static ActionResult preventBlockBreaking(PlayerEntity player, World world, BlockPos pos) {
         if(!canBreakBlock(player, world, pos)) {
@@ -30,25 +28,13 @@ public class InCombatRestrictions {
         return ActionResult.PASS;
     }
 
-    public static void killOnDisconnect(ServerPlayerEntity player) {
-        if(InCombatManager.hasInCombatEffect(player) && restrictionsConfig.kill_on_disconnect) {
-            player.kill();
-        }
-    }
-
-    public static void preventNaturalHealthRegeneration(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
-        if(InCombatManager.hasInCombatEffect(player) && restrictionsConfig.prevent_natural_health_regeneration) {
-            cir.setReturnValue(false);
-        }
-    }
-
     private static boolean canPlaceBlock(PlayerEntity player, Hand hand) {
         Item handItem = player.getStackInHand(hand).getItem();
         String heldBlockId =  Registries.ITEM.getId(handItem).getNamespace() + ":" + Registries.ITEM.getId(handItem).getPath();
 
         // Return false if: player is in combat, hand item is a block, hand item is not whitelisted and the features is enabled in the config
         return !(
-                InCombatManager.hasInCombatEffect(player)
+                InCombatManager.hasCombatEffect(player)
                 && handItem instanceof BlockItem
                 && !restrictionsConfig.block_placing_whitelist.contains(heldBlockId)
                 && restrictionsConfig.disable_block_placing
@@ -60,7 +46,7 @@ public class InCombatRestrictions {
 
         // Return false if: player is in combat, target block is not in whitelisted and the feature is enabled in the config
         return !(
-                InCombatManager.hasInCombatEffect(player)
+                InCombatManager.hasCombatEffect(player)
                 && !restrictionsConfig.block_breaking_whitelist.contains(blockId)
                 && restrictionsConfig.disable_block_breaking
         );

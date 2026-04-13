@@ -1,11 +1,11 @@
-package eagleseye.in_combat.internals;
+package eagleseye.in_combat.internals.effect;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
-public class InCombatEffect extends StatusEffect {
-    public InCombatEffect() {
+public class GraceEffect extends StatusEffect {
+    public GraceEffect() {
         super(StatusEffectCategory.NEUTRAL, 0xe9b8b3);
     }
 
