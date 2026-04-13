@@ -10,15 +10,16 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class InCombatManager {
     private static final RegistryEntry<StatusEffect> IN_COMBAT_EFFECT = Registries.STATUS_EFFECT.getEntry(InCombat.inCombatEffect);
 
-    public static void applyInCombatEffect(PlayerEntity player) {
+    public static void applyInCombatEffect(ServerPlayerEntity player) {
         player.addStatusEffect(new StatusEffectInstance(IN_COMBAT_EFFECT, InCombat.serverConfig.in_combat_duration * 20, 0, true, false));
     }
 
-    public static void applyInCombatEffect(PlayerEntity player, DamageSource source) {
+    public static void applyInCombatEffect(ServerPlayerEntity player, DamageSource source) {
         boolean canApply = false;
         ServerConfig.InCombatSources sourcesConfig = InCombat.serverConfig.in_combat_sources;
 

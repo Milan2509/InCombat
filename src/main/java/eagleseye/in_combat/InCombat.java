@@ -3,6 +3,7 @@ package eagleseye.in_combat;
 import eagleseye.in_combat.config.ServerConfig;
 import eagleseye.in_combat.config.ServerConfigWrapper;
 import eagleseye.in_combat.internals.InCombatEffect;
+import eagleseye.in_combat.internals.InCombatEventHandler;
 import eagleseye.in_combat.internals.InCombatManager;
 import eagleseye.in_combat.internals.InCombatRestrictions;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -34,6 +35,6 @@ public class InCombat implements ModInitializer {
 
 		// Registry
 		inCombatEffect = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "in_combat"), new InCombatEffect());
-		InCombatRestrictions.initializeEvents();
+		InCombatEventHandler.init();
 	}
 }

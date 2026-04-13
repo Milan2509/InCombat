@@ -3,7 +3,6 @@
 	"package": "eagleseye.in_combat.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"LivingEntityMixin",
 		"PlayerEntityMixin"
 	],
 	"injectors": {

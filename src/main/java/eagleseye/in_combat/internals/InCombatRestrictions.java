@@ -41,10 +41,7 @@ public class InCombatRestrictions {
     }
 
     public static void preventNaturalHealthRegeneration(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
-        player.sendMessage(Text.literal("Player Found!"));
-        player.sendMessage(Text.literal("Config: " + restrictionsConfig.prevent_natural_health_regeneration));
         if(InCombatManager.hasInCombatEffect(player) && restrictionsConfig.prevent_natural_health_regeneration) {
-            player.sendMessage(Text.literal("If statement passed!"));
             cir.setReturnValue(false);
         }
     }
@@ -71,18 +68,6 @@ public class InCombatRestrictions {
                 && !restrictionsConfig.block_breaking_whitelist.contains(blockId)
                 && restrictionsConfig.disable_block_breaking
         );
-    }
-
-    public static void initializeEvents(){
-        // Break Block Prevention
-        AttackBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos, direction) ->
-                InCombatRestrictions.preventBlockBreaking(playerEntity, world, blockPos)));
-        // Place Block Prevention
-        UseBlockCallback.EVENT.register(((playerEntity, world, hand, blockPos) ->
-                InCombatRestrictions.preventBlockPlacing(playerEntity, hand)));
-        // Kill on Disconnect
-        ServerPlayConnectionEvents.DISCONNECT.register(((playerEntity, server) ->
-                killOnDisconnect(playerEntity.player)));
     }
 
 }
