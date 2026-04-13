@@ -28,6 +28,12 @@ public class GraceModifiers {
         return ActionResult.PASS;
     }
 
+    public static void heal(PlayerEntity player) {
+        if(InCombat.serverConfig.grace_settings.heal){
+            player.heal(InCombat.serverConfig.grace_settings.heal_amount);
+        }
+    }
+
     private static boolean canPlaceBlock(PlayerEntity player, Hand hand) {
         Item handItem = player.getStackInHand(hand).getItem();
         String heldBlockId =  Registries.ITEM.getId(handItem).getNamespace() + ":" + Registries.ITEM.getId(handItem).getPath();

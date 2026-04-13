@@ -10,6 +10,8 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 public class GraceEffect extends StatusEffect {
     public GraceEffect() {
@@ -18,6 +20,14 @@ public class GraceEffect extends StatusEffect {
 
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
+        return true;
+    }
+
+    @Override
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        if(entity instanceof PlayerEntity player) {
+            GraceModifiers.heal(player);
+        }
         return true;
     }
 }

@@ -21,11 +21,13 @@ public class ServerConfig implements ConfigData {
 //        @Comment("Should the player be invulnerable to all damage while having grace")
 //        public boolean invulnerable = false;
 
-        @Comment("Should the player be healed to full while having grace")
+        @Comment("Should the player be healed to full while having grace, default = false")
         public boolean heal = false;
+        @Comment("The amount of healing the player should receive every tick, default = 2.0")
+        public float heal_amount = 2f;
 
-        @Comment("Should the player not lose hunger while having grace")
-        public boolean saturation = false;
+//        @Comment("Should the player not lose hunger while having grace, default = false")
+//        public boolean saturation = false;
     }
 
     public static class CombatSettings {
