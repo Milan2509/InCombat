@@ -27,7 +27,7 @@ dependencies {
     // Config
     modImplementation "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
     modImplementation "blue.endless:jankson:1.2.3"
-    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+//    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
 }
 
