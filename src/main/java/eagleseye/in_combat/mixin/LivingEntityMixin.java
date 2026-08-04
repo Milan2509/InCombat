@@ -18,10 +18,12 @@ public class LivingEntityMixin {
     private void onCombatEffectRemoved(StatusEffectInstance statusEffectInstance, CallbackInfo ci) {
         if(!((Object)this instanceof ServerPlayerEntity player)) return;
 
+        // Note: do not use InCombatManager#hasCombatEffect it breaks stuff
         if(statusEffectInstance.getEffectType().value() == InCombat.combatEffect) {
             NetworkHandler.sendDataToClient(player, new CombatDataPayload(false));
         }
 
+        // Note: do not use InCombatManager#hasGraceEffect it breaks stuff
         if(statusEffectInstance.getEffectType().value() == InCombat.graceEffect) {
             NetworkHandler.sendDataToClient(player, new GraceDataPayload(false));
         }
