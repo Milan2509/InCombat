@@ -34,7 +34,13 @@ public class ServerConfig implements ConfigData {
         @Comment("The duration that the player will be set in combat, in seconds, default = 15")
         public int duration = 15;
 
-        @Comment("Damage sources that will set the player in combat")
+        @Comment("If attacking an entity should put the player in combat")
+        public boolean attacking_grants_combat = true;
+
+        @Comment("Entities that, when attacked, should not put the player in combat")
+        public List<String> attacking_blacklist = new ArrayList<>();
+
+        @Comment("Damage sources that will put the player in combat")
         public InCombatSources sources = new InCombatSources();
 
         @Comment("Restrictions while the player is in combat")

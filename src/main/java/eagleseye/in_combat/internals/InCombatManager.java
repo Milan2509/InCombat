@@ -5,6 +5,7 @@ import eagleseye.in_combat.config.ServerConfig;
 import eagleseye.in_combat.internals.networking.CombatDataPayload;
 import eagleseye.in_combat.internals.networking.NetworkHandler;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
@@ -30,13 +31,21 @@ public class InCombatManager {
         boolean canApply = false;
         ServerConfig.InCombatSources sourcesConfig = InCombat.serverConfig.combat_settings.sources;
 
-        if(sourcesConfig.all) canApply = true;
-        else if(source.getAttacker() instanceof PlayerEntity && sourcesConfig.player) canApply = true;
-        else if(source.getAttacker() instanceof Entity && !(source.getAttacker() instanceof PlayerEntity) && sourcesConfig.entity) canApply = true;
-        else if(source.isOf(DamageTypes.ON_FIRE) && sourcesConfig.fire) canApply = true;
-        else if(source.isOf(DamageTypes.FALL) && sourcesConfig.fall_damage) canApply = true;
+        if (sourcesConfig.all) canApply = true;
+        else if (source.getAttacker() instanceof PlayerEntity && sourcesConfig.player) canApply = true;
+        else if (source.getAttacker() instanceof Entity && !(source.getAttacker() instanceof PlayerEntity) && sourcesConfig.entity)
+            canApply = true;
+        else if (source.isOf(DamageTypes.ON_FIRE) && sourcesConfig.fire) canApply = true;
+        else if (source.isOf(DamageTypes.FALL) && sourcesConfig.fall_damage) canApply = true;
 
         if (canApply) applyCombatEffect(player);
+    }
+
+    public static void applyCombatEffectByAttacking(ServerPlayerEntity player, LivingEntity entity) {
+        ServerConfig.CombatSettings combatSettings = InCombat.serverConfig.combat_settings;
+        if (combatSettings.attacking_grants_combat && !combatSettings.attacking_blacklist.contains(Registries.ENTITY_TYPE.getId(entity.getType()).toString())) {
+            applyCombatEffect(player);
+        }
     }
 
     public static void applyGraceEffect(ServerPlayerEntity player, int duration) {
@@ -50,7 +59,6 @@ public class InCombatManager {
     public static boolean hasGraceEffect(PlayerEntity player) {
         return player.hasStatusEffect(GRACE_EFFECT);
     }
-
 
 
 }
