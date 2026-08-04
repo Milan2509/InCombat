@@ -38,13 +38,17 @@ public class InCombat implements ModInitializer {
 		serverConfig = AutoConfig.getConfigHolder(ServerConfigWrapper.class).getConfig().server;
 		clientConfig = AutoConfig.getConfigHolder(ClientConfigWrapper.class).getConfig().client;
 
-		// Registry
+		// Effects
 		combatEffect = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "combat"), new CombatEffect());
 		graceEffect = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "grace"), new GraceEffect());
-		InCombatEventHandler.init();
 
+		// Handlers
+		InCombatEventHandler.register();
 		HudRenderer.register();
+
+		// Network
 		NetworkHandler.registerPayloads();
 		NetworkHandler.registerClient();
+		NetworkHandler.registerSyncDataOnLogin();
 	}
 }

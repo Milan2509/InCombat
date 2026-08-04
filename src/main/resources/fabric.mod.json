@@ -18,9 +18,6 @@
 		"main": [
 			"eagleseye.in_combat.InCombat"
 		],
-		"client": [
-			"eagleseye.in_combat.InCombatClient"
-		],
 		"modmenu": [
 			"eagleseye.in_combat.internals.compat.ModMenuIntegration"
 		]

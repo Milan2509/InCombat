@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class InCombatEventHandler {
-    public static void init(){
+    public static void register(){
         /*
         *
         * Combat Effect
