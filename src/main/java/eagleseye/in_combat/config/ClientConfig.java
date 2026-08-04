@@ -10,8 +10,8 @@ public class ClientConfig implements ConfigData {
 
     public static class ClientConfigSettings{
         public boolean render_hud = true;
-        public int x_offset = 0;
-        public int y_offset = 0;
+        public int x_offset = -7;
+        public int y_offset = -60;
     }
 
 }

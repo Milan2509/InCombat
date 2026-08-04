@@ -3,7 +3,7 @@
 	"id": "in_combat",
 	"version": "${version}",
 	"name": "In Combat",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Detect when the player is in combat and prevent actions! Highly configurable & with mod integrations!",
 	"authors": [
 		"EaglesEye"
 	],
@@ -17,6 +17,12 @@
 	"entrypoints": {
 		"main": [
 			"eagleseye.in_combat.InCombat"
+		],
+		"client": [
+			"eagleseye.in_combat.InCombatClient"
+		],
+		"modmenu": [
+			"eagleseye.in_combat.internals.compat.ModMenuIntegration"
 		]
 	},
 	"mixins": [

@@ -1,6 +1,9 @@
 package eagleseye.in_combat.internals.effect;
 
 import eagleseye.in_combat.internals.GraceModifiers;
+import eagleseye.in_combat.internals.networking.CombatDataPayload;
+import eagleseye.in_combat.internals.networking.GraceDataPayload;
+import eagleseye.in_combat.internals.networking.NetworkHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -29,5 +32,12 @@ public class GraceEffect extends StatusEffect {
             GraceModifiers.heal(player);
         }
         return true;
+    }
+
+    @Override
+    public void onApplied(LivingEntity entity, int amplifier) {
+        if (entity instanceof ServerPlayerEntity player){
+            NetworkHandler.sendDataToClient(player, new GraceDataPayload(true));
+        }
     }
 }

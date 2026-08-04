@@ -8,6 +8,7 @@ import eagleseye.in_combat.internals.client.HudRenderer;
 import eagleseye.in_combat.internals.effect.CombatEffect;
 import eagleseye.in_combat.internals.InCombatEventHandler;
 import eagleseye.in_combat.internals.effect.GraceEffect;
+import eagleseye.in_combat.internals.networking.NetworkHandler;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -43,5 +44,7 @@ public class InCombat implements ModInitializer {
 		InCombatEventHandler.init();
 
 		HudRenderer.register();
+		NetworkHandler.registerPayloads();
+		NetworkHandler.registerClient();
 	}
 }

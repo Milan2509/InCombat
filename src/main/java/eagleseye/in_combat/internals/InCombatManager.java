@@ -2,6 +2,8 @@ package eagleseye.in_combat.internals;
 
 import eagleseye.in_combat.InCombat;
 import eagleseye.in_combat.config.ServerConfig;
+import eagleseye.in_combat.internals.networking.CombatDataPayload;
+import eagleseye.in_combat.internals.networking.NetworkHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
@@ -17,7 +19,7 @@ public class InCombatManager {
     private static final RegistryEntry<StatusEffect> GRACE_EFFECT = Registries.STATUS_EFFECT.getEntry(InCombat.graceEffect);
 
     public static void applyCombatEffect(ServerPlayerEntity player) {
-        player.addStatusEffect(new StatusEffectInstance(COMBAT_EFFECT, InCombat.serverConfig.combat_settings.duration * 20, 0, true, false));
+        applyCombatEffect(player, InCombat.serverConfig.combat_settings.duration * 20);
     }
 
     public static void applyCombatEffect(ServerPlayerEntity player, int duration) {
