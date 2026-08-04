@@ -32,7 +32,7 @@ public class InCombatManager {
 
         if(sourcesConfig.all) canApply = true;
         else if(source.getAttacker() instanceof PlayerEntity && sourcesConfig.player) canApply = true;
-        else if(source.getAttacker() instanceof Entity && sourcesConfig.entity) canApply = true;
+        else if(source.getAttacker() instanceof Entity && !(source.getAttacker() instanceof PlayerEntity) && sourcesConfig.entity) canApply = true;
         else if(source.isOf(DamageTypes.ON_FIRE) && sourcesConfig.fire) canApply = true;
         else if(source.isOf(DamageTypes.FALL) && sourcesConfig.fall_damage) canApply = true;
 
