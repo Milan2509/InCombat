@@ -4,6 +4,7 @@ import eagleseye.in_combat.config.ClientConfig;
 import eagleseye.in_combat.config.ClientConfigWrapper;
 import eagleseye.in_combat.config.ServerConfig;
 import eagleseye.in_combat.config.ServerConfigWrapper;
+import eagleseye.in_combat.internals.client.HudRenderer;
 import eagleseye.in_combat.internals.effect.CombatEffect;
 import eagleseye.in_combat.internals.InCombatEventHandler;
 import eagleseye.in_combat.internals.effect.GraceEffect;
@@ -40,5 +41,7 @@ public class InCombat implements ModInitializer {
 		combatEffect = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "combat"), new CombatEffect());
 		graceEffect = Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "grace"), new GraceEffect());
 		InCombatEventHandler.init();
+
+		HudRenderer.register();
 	}
 }

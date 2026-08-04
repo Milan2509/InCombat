@@ -5,13 +5,13 @@
 	"name": "In Combat",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
-		"Me!"
+		"EaglesEye"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/in-combat",
+		"sources": "https://github.com/Milan2509/InCombat"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/in_combat/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -26,6 +26,7 @@
 		"fabricloader": ">=0.18.6",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"cloth-config": ">=11.0.0"
 	}
 }
